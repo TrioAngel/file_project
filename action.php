@@ -77,7 +77,7 @@ if(isset($_POST['action'])){
                 $output .= '
                     <tr>
                         <td><img src="'.$path.'" class="img-thumbnail" height="50" width="50"/> </td>
-                        <td>'.$file.'</td>
+                        <td contenteditable="true" data-folder_name="'.$_POST["folder_name"].'" data-file_name="'.$file.'" class="change_file_name" >'.$file.'</td>
                         <td><button name="remove_file" class="remove_file btn btn-danger btn-xs" id="'.$path.'">Remove</button></td>
                     </tr>
                 ';
@@ -106,6 +106,18 @@ if(isset($_POST['action'])){
         if(rmdir($_POST['folder_name'])){
             echo "Folder Deleted!!!";
         }
+    }
+
+    if($_POST['action'] == 'change_file_name'){
+        $old_name = $_POST['folder_name']. '/' . $_POST['old_file_name'];
+        $new_name = $_POST['folder_name']. '/' . $_POST['new_file_name'];
+
+        if(rename($old_name, $new_name)){
+            echo 'File name change successfully';
+        }else{
+            echo "There is an error";
+        }
+
     }
 }
 

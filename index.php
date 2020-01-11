@@ -213,5 +213,20 @@
                 })
             }
         })
+
+        $(document).on('blur', '.change_file_name', function(){
+            var folder_name = $(this).data("folder_name");
+            var old_file_name = $(this).data("file_name");
+            var new_file_name = $(this).text();
+            var action = "change_file_name";
+            $.ajax({
+                url:'action.php',
+                method:'POST',
+                data:{folder_name:folder_name, old_file_name:old_file_name, new_file_name:new_file_name, action:action},
+                success:function(data){
+                    alert(data);
+                }
+            })
+        })
     });
 </script>
