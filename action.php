@@ -1,5 +1,37 @@
 <?php
 
+function format_folder_size($size){
+    if ($size >= 1073741824){
+        $size = number_format($size / 1073741824, 2) . ' Gb';
+    }elseif($size >= 1048576) {
+        $size = number_format($size / 1048576, 2) . ' Mb';
+    }elseif($size >= 1024) {
+        $size = number_format($size / 1024, 2) . ' Kb';
+    }elseif($size > 1){
+        $size = $size . ' bytes';
+    }elseif($size == 1){
+        $size = $size . ' byte';
+    }else{
+        $size ='0 bytes';
+    }
+    return $size;
+}
+
+function get_folder_size($folder_name){
+    $total_size = 0;
+    $file_data = scandir($folder_name);
+    foreach($file_data as $file){
+        if($file === '.' || $file === '..'){
+            continue;
+        }else{
+            $path = $folder_name . '/' . $file;
+            $total_size = $total_size + filesize($path);
+        }
+    }
+    return format_folder_size($total_size);
+
+}
+
 if(isset($_POST['action'])){
     if($_POST['action'] == "fetch"){
         $folder = array_filter(glob('*'), 'is_dir');
@@ -8,6 +40,7 @@ if(isset($_POST['action'])){
             <tr>
                 <th>Folder Name</th>
                 <th>Total File</th>
+                <th>Size</th>
                 <th>Update</th>
                 <th>Delete</th>
                 <th>Upload File</th>
@@ -21,6 +54,7 @@ if(isset($_POST['action'])){
                     <tr>
                         <td>'.$name.'</td>
                         <td>'.(count(scandir($name))-2).'</td>
+                        <td>'.get_folder_size($name).'</td>
                         <td><button type="button" name="update" data-name="'.$name.'" class="update btn btn-warning btn-xs">Update</button></td>
                         <td><button type="button" name="delete" data-name="'.$name.'" class="delete btn btn-danger btn-xs">Delete</button></td>
                         <td><button type="button" name="upload" data-name="'.$name.'" class="upload btn btn-info btn-xs">Upload File</button></td>
