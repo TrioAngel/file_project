@@ -24,7 +24,7 @@ if(isset($_POST['action'])){
                         <td><button type="button" name="update" data-name="'.$name.'" class="update btn btn-warning btn-xs">Update</button></td>
                         <td><button type="button" name="delete" data-name="'.$name.'" class="delete btn btn-danger btn-xs">Delete</button></td>
                         <td><button type="button" name="upload" data-name="'.$name.'" class="upload btn btn-info btn-xs">Upload File</button></td>
-                        <td><button type="button" name="view_files" data-name="'.$name.'" class="view_files btn btn-default btn-xs">View Files</button></td>
+                        <td><button type="button" name="view_files" data-name="'.$name.'" class="view_files btn btn-secondary btn-xs">View Files</button></td>
                     </tr>
                 ';
             }
