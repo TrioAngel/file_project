@@ -93,6 +93,20 @@ if(isset($_POST['action'])){
             echo 'File Deleted';
         }
     }
+
+    if($_POST["action"] == "delete"){
+        $files = scandir($_POST["folder_name"]);
+        foreach($files as $file){
+            if($file === '.' || $file === '..'){
+                continue;
+            }else{
+                unlink($_POST['folder_name'].'/'.$file);
+            }
+        }
+        if(rmdir($_POST['folder_name'])){
+            echo "Folder Deleted!!!";
+        }
+    }
 }
 
 ?>
