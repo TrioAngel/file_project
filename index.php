@@ -178,5 +178,24 @@
                 }
             })
         });
+
+        $(document).on('click', '.remove_file', function(){
+            var path = $(this).attr("id");
+            var action = "remove_file";
+            if(confirm("Are you sure you want to remove this file?")){
+                $.ajax({
+                    url: "action.php",
+                    method:"POST",
+                    data:{path:path, action:action},
+                    success:function(data){
+                        alert(data);
+                        $('#filelistModal').modal('hide');
+                        load_folder_list();
+                    }
+                });
+            }else {
+                return false;
+            }
+        });
     });
 </script>

@@ -86,6 +86,13 @@ if(isset($_POST['action'])){
         $output .= '</table>';
         echo $output;
     }
+
+    if ($_POST["action"] == "remove_file"){
+        if(file_exists($_POST['path'])){
+            unlink($_POST["path"]);
+            echo 'File Deleted';
+        }
+    }
 }
 
 ?>
