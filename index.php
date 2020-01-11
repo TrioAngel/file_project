@@ -72,6 +72,23 @@
     </div>
 </div>
 
+<div id="filelistModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><span id="change_title">File List</span></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="file_list">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $(document).ready(function(){
 
@@ -137,13 +154,27 @@
             $.ajax({
                 url: "upload.php",
                 method: "POST",
-                data: new FormData(this),
+                data:new FormData(this),
                 contentType:false,
                 cache:false,
                 processData:false,
                 success:function(data){
                     load_folder_list();
                     alert(data);
+                }
+            })
+        });
+
+        $(document).on('click', '.view_files', function(){
+            var folder_name = $(this).data("name");
+            var action = "fetch_files";
+            $.ajax({
+                url: "action.php",
+                method: "POST",
+                data: {action:action, folder_name:folder_name},
+                success:function(data){
+                    $('#file_list').html(data);
+                    $('#filelistModal').modal('show');
                 }
             })
         });
