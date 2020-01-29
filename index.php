@@ -59,7 +59,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" id="upload_form" enctype="multipart form/data">
-                    <p>Select Image <input type="file" name="upload_file"></p>
+                    <p>Select File <input type="file" name="upload_file"></p>
                     <br>
                     <input type="hidden" name="hidden_folder_name" id="hidden_folder_name">
                     <input type="submit" name="upload_button" class="btn btn-info" value="Upload">

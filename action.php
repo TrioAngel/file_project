@@ -97,7 +97,7 @@ if(isset($_POST['action'])){
         $output = '
             <table class="table table-bordered table-striped">
                 <tr>
-                    <th>Image</th>
+                    <th>File</th>
                     <th>File Name</th>
                     <th>Delete</th>
                 </tr>
