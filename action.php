@@ -38,9 +38,9 @@ if(isset($_POST['action'])){
         $output = '
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Folder Name</th>
-                <th>Total File</th>
-                <th>Size</th>
+                <th>Folder Name <button type="button" class="btn btn-default" id="sort_name">&#8593;&#8595;</button></th>
+                <th>Total File <button type="button" class="btn btn-default" id="sort_total">&#8593;&#8595;</button></th>
+                <th>Size <button type="button" class="btn btn-default" id="sort_size">&#8593;&#8595;</button></th>
                 <th>Update</th>
                 <th>Delete</th>
                 <th>Upload File</th>
@@ -107,14 +107,29 @@ if(isset($_POST['action'])){
             if ($file === '.' or $file === '..'){
                 continue;
             } else {
-                $path = $_POST["folder_name"]."/".$file;
-                $output .= '
-                    <tr>
-                        <td><img src="'.$path.'" class="img-thumbnail" height="50" width="50"/> </td>
-                        <td contenteditable="true" data-folder_name="'.$_POST["folder_name"].'" data-file_name="'.$file.'" class="change_file_name" >'.$file.'</td>
-                        <td><button name="remove_file" class="remove_file btn btn-danger btn-xs" id="'.$path.'">Remove</button></td>
-                    </tr>
-                ';
+                $data = explode(".", $file); 
+                $extention = $data[1];
+                $allowed_extention = array("jpg", "png", "gif");
+                if(in_array($extention, $allowed_extention)){
+                    $path = $_POST["folder_name"]."/".$file;
+                    $output .= '
+                        <tr>
+                            <td><img src="'.$path.'" class="img-thumbnail" height="50" width="50"/> </td>
+                            <td contenteditable="true" data-folder_name="'.$_POST["folder_name"].'" data-file_name="'.$file.'" class="change_file_name" >'.$file.'</td>
+                            <td><button name="remove_file" class="remove_file btn btn-danger btn-xs" id="'.$path.'">Remove</button></td>
+                        </tr>
+                    ';
+                }else{
+                    $path = $_POST["folder_name"]."/".$file;
+                    $output .= '
+                        <tr>
+                            <td><img src="default.png" class="img-thumbnail" height="50" width="50"/> </td>
+                            <td contenteditable="true" data-folder_name="'.$_POST["folder_name"].'" data-file_name="'.$file.'" class="change_file_name" >'.$file.'</td>
+                            <td><button name="remove_file" class="remove_file btn btn-danger btn-xs" id="'.$path.'">Remove</button></td>
+                        </tr>
+                    ';
+                }
+                
             }
         }
         $output .= '</table>';
