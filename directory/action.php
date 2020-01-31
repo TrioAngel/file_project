@@ -38,9 +38,9 @@ if(isset($_POST['action'])){
         $output = '
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Folder Name <button type="button" class="btn btn-default" id="sort_name">&#8593;&#8595;</button></th>
-                <th>Total File <button type="button" class="btn btn-default" id="sort_total">&#8593;&#8595;</button></th>
-                <th>Size <button type="button" class="btn btn-default" id="sort_size">&#8593;&#8595;</button></th>
+                <th>Folder Name</th>
+                <th>Total File</th>
+                <th>Size </th>
                 <th>Update</th>
                 <th>Delete</th>
                 <th>Upload File</th>
