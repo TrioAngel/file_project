@@ -96,7 +96,7 @@
         function load_folder_list() {
             var action = "fetch";
             $.ajax({
-                url : "action.php",
+                url : "directory/action.php",
                 method: "POST",
                 data: {action:action},
                 success: function(data){
@@ -120,7 +120,7 @@
             var old_name = $('#old_name').val();
             if(folder_name != ''){
                 $.ajax({
-                    url:'action.php',
+                    url:'directory/action.php',
                     method:'POST',
                     data:{folder_name:folder_name, old_name:old_name, action:action},
                     success:function(data){
@@ -169,7 +169,7 @@
             var folder_name = $(this).data("name");
             var action = "fetch_files";
             $.ajax({
-                url: "action.php",
+                url: "directory/action.php",
                 method: "POST",
                 data: {action:action, folder_name:folder_name},
                 success:function(data){
@@ -184,7 +184,7 @@
             var action = "remove_file";
             if(confirm("Are you sure you want to remove this file?")){
                 $.ajax({
-                    url: "action.php",
+                    url: "directory/action.php",
                     method:"POST",
                     data:{path:path, action:action},
                     success:function(data){
@@ -203,7 +203,7 @@
             var action = 'delete';
             if (confirm("Are you sure you want to delete this folder?")){
                 $.ajax({
-                    url: "action.php",
+                    url: "directory/action.php",
                     method: "POST",
                     data:{folder_name:folder_name, action:action},
                     success:function(data){
@@ -220,7 +220,7 @@
             var new_file_name = $(this).text();
             var action = "change_file_name";
             $.ajax({
-                url:'action.php',
+                url:'directory/action.php',
                 method:'POST',
                 data:{folder_name:folder_name, old_file_name:old_file_name, new_file_name:new_file_name, action:action},
                 success:function(data){
